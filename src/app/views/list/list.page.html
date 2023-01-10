@@ -1,0 +1,49 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> Tab 2 </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tab 2</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-grid fixed *ngIf="products$ | async as data">
+    <ion-row>
+      <ion-col
+        [routerLink]="[product.id]"
+        size="6"
+        *ngFor="let product of data.products; let i = index"
+        [@enter]="{value: '', params: {delay: i * 80}}"
+      >
+        <ion-card
+          class="ion-activatable flex flex-col gap-y-1 overflow-hidden rounded-lg p-2 text-center drop-shadow-2xl"
+        >
+          <img [src]="product.thumbnail" class="h-28 rounded-lg p-1" />
+          <ion-card-title
+            class="m-auto flex h-12 items-center justify-center text-base"
+          >
+            <span class="line-clamp-2">{{product.title}}</span>
+          </ion-card-title>
+          <star-rating
+            [rating]="product.rating"
+            starType="svg"
+            [disabled]="true"
+          ></star-rating>
+          <ion-card-subtitle class="text-base font-bold text-red-600"
+            >{{product.price.toFixed(2)}}$</ion-card-subtitle
+          >
+          <ion-button
+            fill="clear"
+            class="rounded-lg bg-neutral-800 text-xs text-[#4C94CE]"
+            >Add to cart</ion-button
+          >
+          <ion-ripple-effect class="text-neutral-600"></ion-ripple-effect>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

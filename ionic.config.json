@@ -1,0 +1,9 @@
+{
+  "name": "emag-copy",
+  "integrations": {
+    "capacitor": {
+    
+    }
+  },
+  "type": "angular"
+}
